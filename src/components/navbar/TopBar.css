@@ -1,3 +1,4 @@
+/* TopBar.css */
 .topbar {
   background-color: var(--primary);
   color: var(--white);
@@ -7,6 +8,7 @@
 
 .topbar-email {
   font-weight: var(--font-medium);
+  white-space: nowrap;
 }
 
 .location-select {
@@ -24,6 +26,7 @@
   color: var(--white);
   text-decoration: none;
   transition: var(--transition-fast);
+  white-space: nowrap;
 }
 
 .top-link:hover {
@@ -32,14 +35,58 @@
 
 /* Mobile responsive */
 @media (max-width: 768px) {
-  .topbar .container {
-    flex-direction: column;
-    gap: 5px;
+  .topbar {
+    padding: 6px 0;
+    font-size: 12px;
   }
+
+  .topbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap; /* important: prevent stacking */
+    gap: 10px;
+    overflow-x: auto; /* safe fallback if screen gets too small */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .topbar .container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .topbar-left,
+  .topbar-right {
+    flex-shrink: 0;
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .location-select {
     display: none;
   }
+
+  .topbar-email,
+  .top-link {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    padding: 5px 0;
+    font-size: 11px;
+  }
+
   .topbar-right {
-    justify-content: center;
+    gap: 8px;
+  }
+
+  .topbar-email,
+  .top-link {
+    font-size: 11px;
   }
 }
