@@ -4,8 +4,11 @@
   background: var(--white);
   padding: 12px 0;
   box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 100;
 }
 
+/* Top row */
 .mainnav-container {
   display: flex;
   justify-content: space-between;
@@ -18,6 +21,7 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .logo-image {
@@ -26,10 +30,10 @@
   display: block;
 }
 
-/* Search Box */
+/* Desktop Search Box */
 .search-box {
   flex: 1.8;
-  max-width: 700px;
+  max-width: 800px;
   min-width: 380px;
   display: flex;
   align-items: stretch;
@@ -38,7 +42,6 @@
 .search-input {
   flex: 1;
   height: 46px;
-  width: 550px;
   padding: 0 18px;
   border: 1px solid var(--gray-lighter);
   border-right: none;
@@ -76,7 +79,7 @@
 .right-section {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   flex-shrink: 0;
 }
 
@@ -125,12 +128,11 @@
 }
 
 /* Icon Buttons */
-.hamburger-btn,
-.search-icon-btn {
+.hamburger-btn {
   background: transparent;
   border: none;
   padding: 0;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -141,9 +143,68 @@
   color: var(--gray-dark);
 }
 
-.search-icon {
-  font-size: 20px;
-  color: var(--primary);
+/* Mobile Search Row */
+.mobile-search-row {
+  display: none;
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.mobile-search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.mobile-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: var(--gray);
+  font-size: 15px;
+}
+
+.mobile-search-input {
+  width: 100%;
+  height: 42px;
+  border: none;
+  outline: none;
+  background: #f1f3f6;
+  border-radius: 12px;
+  padding: 0 14px 0 40px;
+  font-size: var(--text-sm);
+  color: var(--gray-dark);
+  transition: var(--transition-fast);
+}
+
+.mobile-search-input:focus {
+  background: var(--white);
+  box-shadow: 0 0 0 2px var(--primary-bg);
+  border: 1px solid var(--primary);
+}
+
+/* Floating Budget Badge (mobile only) */
+.floating-budget {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 16px;
+  background: var(--primary);
+  color: var(--white);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: var(--font-medium);
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.25);
+  z-index: 999;
+  transition: var(--transition-fast);
+}
+
+.floating-budget:hover {
+  background: var(--primary-dark);
+  color: var(--white);
+  transform: translateY(-2px);
 }
 
 /* Visibility */
@@ -155,7 +216,7 @@
   display: block;
 }
 
-/* Responsive */
+/* Tablet */
 @media (max-width: 992px) {
   .search-box {
     max-width: 500px;
@@ -167,28 +228,60 @@
   }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
   .desktop-only {
-    display: none;
+    display: none !important;
   }
 
   .mobile-only {
-    display: flex;
+    display: flex !important;
+  }
+
+  .mainnav {
+    padding: 10px 0 12px;
   }
 
   .mainnav-container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
     gap: 12px;
   }
 
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .logo-container {
+    justify-self: center;
+  }
+
   .logo-image {
-    height: 35px;
+    height: 34px;
   }
 
   .right-section {
-    gap: 15px;
+    justify-self: end;
+    gap: 10px;
+  }
+
+  .cart-section svg {
+    font-size: 20px;
+  }
+
+  .mobile-search-row {
+    display: flex;
+  }
+
+  .floating-budget {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
   }
 }
 
+/* Small Mobile */
 @media (max-width: 480px) {
   .logo-image {
     height: 30px;
@@ -198,7 +291,27 @@
     font-size: 20px;
   }
 
-  .search-icon {
+  .cart-section svg {
     font-size: 18px;
+  }
+
+  .cart-badge {
+    top: -7px;
+    right: -10px;
+    font-size: 10px;
+    min-width: 16px;
+    padding: 2px 5px;
+  }
+
+  .mobile-search-input {
+    height: 40px;
+    font-size: 13px;
+  }
+
+  .floating-budget {
+    bottom: 76px;
+    right: 12px;
+    padding: 9px 12px;
+    font-size: 12px;
   }
 }

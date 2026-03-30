@@ -1,0 +1,82 @@
+/* CategoryBar.css */
+.categorybar {
+
+  background-color: var(--white);
+  padding: 0.5rem 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+ 
+}
+.container-cat{
+    background-color: var(--danger);
+}
+
+.category-left {
+  position: relative;
+  cursor: pointer;
+  color: var(--white);
+  font-weight: var(--font-medium);
+  padding: 0.25rem 0;
+}
+
+.category-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color:var(--white);
+}
+.category-trigger:hover{
+    color: var(--primary);
+}
+
+.category-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--white);
+  min-width: 220px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  color: var(--text-main);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.dropdown-item:hover {
+  background: var(--bg-light);
+  color: var(--primary);
+}
+
+.category-right {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.category-right a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: var(--font-medium);
+  transition: var(--transition-fast);
+}
+
+.category-right a:hover {
+  color: var(--primary);
+}
+
+/* Only visible on desktop */
+.desktop-only {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+}
