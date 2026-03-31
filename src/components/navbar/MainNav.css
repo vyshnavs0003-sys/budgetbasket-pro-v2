@@ -42,6 +42,7 @@
 .search-input {
   flex: 1;
   height: 46px;
+  width: 600px;
   padding: 0 18px;
   border: 1px solid var(--gray-lighter);
   border-right: none;

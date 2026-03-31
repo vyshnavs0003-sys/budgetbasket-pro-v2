@@ -6,12 +6,13 @@ const TopBar = () => {
     <div className="topbar">
       <div className="container d-flex justify-content-between align-items-center">
         <div className="topbar-left">
-          <span className="topbar-email">info@budgetbasket.com</span>
+          <a href="mailto:info@budgetbasket.com" className="topbar-email">
+            info@budgetbasket.com
+          </a>
         </div>
 
-        
         <div className="topbar-right d-flex align-items-center gap-3">
-          <select className="location-select">
+          <select className="location-select" aria-label="Select location">
             <option>Kozhikode</option>
             <option>Mankavu</option>
             <option>Vellimadukunnu</option>
@@ -21,8 +22,8 @@ const TopBar = () => {
           </select>
 
           <Link to="/contact" className="top-link">Contact</Link>
-          <span className="top-link">Login</span>
-          <span className="top-link">Register</span>
+          <Link to="/login" className="top-link">Login</Link>
+          <Link to="/register" className="top-link">Register</Link>
         </div>
       </div>
     </div>

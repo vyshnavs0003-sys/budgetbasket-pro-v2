@@ -7,8 +7,14 @@
 }
 
 .topbar-email {
+  color: var(--white);
   font-weight: var(--font-medium);
   white-space: nowrap;
+  text-decoration: none;
+}
+
+.topbar-email:hover {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .location-select {
@@ -37,21 +43,21 @@
 @media (max-width: 768px) {
   .topbar {
     padding: 6px 0;
-    font-size: 12px;
+    font-size: var(--text-xs);
   }
 
   .topbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: nowrap; /* important: prevent stacking */
+    flex-wrap: nowrap;
     gap: 10px;
-    overflow-x: auto; /* safe fallback if screen gets too small */
-    scrollbar-width: none; /* Firefox */
+    overflow-x: auto;
+    scrollbar-width: none;
   }
 
   .topbar .container::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
   }
 
   .topbar-left,
@@ -71,7 +77,7 @@
 
   .topbar-email,
   .top-link {
-    font-size: 12px;
+    font-size: var(--text-xs);
   }
 }
 

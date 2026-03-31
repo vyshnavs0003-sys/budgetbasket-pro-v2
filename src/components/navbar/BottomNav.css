@@ -9,7 +9,7 @@
   justify-content: space-around;
   align-items: center;
   padding: 8px 0 12px;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   border-top: 1px solid var(--border-light);
   z-index: 100;
 }
@@ -21,7 +21,7 @@
   text-decoration: none;
   color: var(--text-secondary);
   font-size: var(--text-xs);
-  transition: var(--transition-fast);
+  transition: color var(--transition-fast);
   background: none;
   border: none;
   cursor: pointer;
@@ -47,7 +47,7 @@
   top: -8px;
   right: -12px;
   background: var(--danger);
-  color: white;
+  color: var(--white);
   font-size: 10px;
   padding: 2px 5px;
   border-radius: var(--radius-full);
@@ -64,6 +64,7 @@
   .mobile-only {
     display: flex;
   }
+
   body {
     padding-bottom: 70px;
   }
