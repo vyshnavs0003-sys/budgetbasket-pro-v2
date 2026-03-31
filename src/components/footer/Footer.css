@@ -1,0 +1,239 @@
+.footer-section {
+  background: var(--dark-900);
+  color: var(--text-inverse);
+  padding: 60px 0 20px;
+  font-size: 14px;
+}
+
+.footer-logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent-green);
+}
+
+.footer-tagline {
+  margin-top: 10px;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.footer-title {
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--white);
+}
+
+.footer-links {
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--text-inverse);
+  display: inline-block;
+  transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-green);
+  transform: translateX(5px);
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  color: var(--text-inverse);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--accent-green);
+  transform: scale(1.15);
+}
+
+.social-icons svg {
+  font-size: 18px;
+}
+
+/* Contact Section */
+.footer-contact p {
+  color: var(--text-inverse);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-contact svg {
+  color: var(--accent-green);
+  flex-shrink: 0;
+}
+
+/* Store Badges */
+.store-badges {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.store-badge {
+  height: 40px;
+  width: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.store-badge:hover {
+  transform: scale(1.05);
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--dark-700);
+  color: var(--dark-500);
+}
+
+/* FOOTER MOBILE */
+@media screen and (max-width: 768px) {
+  .footer-section {
+    padding: 40px 0 80px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .footer-tagline {
+    font-size: 13px;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .social-icons {
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+  }
+
+  .social-icons svg {
+    font-size: 22px;
+  }
+
+  .footer-title {
+    margin-top: 25px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: var(--accent-green);
+  }
+
+  .col-6.col-md-2 .footer-links,
+  .col-6.col-md-3 .footer-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 8px;
+    padding: 0 10px;
+  }
+
+  .col-6.col-md-2 .footer-links li,
+  .col-6.col-md-3 .footer-links li {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .col-6.col-md-2 .footer-links a,
+  .col-6.col-md-3 .footer-links a {
+    padding: 5px 0;
+    font-size: 13px;
+    color: var(--text-inverse);
+  }
+
+  .col-6.col-md-2 .footer-links a:hover,
+  .col-6.col-md-3 .footer-links a:hover {
+    color: var(--accent-green);
+    transform: translateY(-2px);
+  }
+
+  .footer-contact p {
+    justify-content: center;
+    font-size: 13px;
+    margin-bottom: 12px;
+    background: var(--dark-800);
+    padding: 10px 14px;
+    border-radius: 30px;
+  }
+
+  .footer-contact svg {
+    font-size: 16px;
+  }
+
+  .store-badges {
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+  .store-badge {
+    height: 35px;
+  }
+
+  .footer-bottom {
+    margin-top: 30px;
+    padding-top: 15px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .col-6.col-md-2 .footer-links a,
+  .col-6.col-md-3 .footer-links a {
+    font-size: 11px;
+  }
+
+  .col-6.col-md-2 .footer-links,
+  .col-6.col-md-3 .footer-links {
+    gap: 8px 5px;
+  }
+
+  .footer-title {
+    font-size: 15px;
+  }
+
+  .footer-contact p {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .store-badge {
+    height: 30px;
+  }
+}

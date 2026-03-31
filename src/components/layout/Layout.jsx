@@ -5,6 +5,7 @@ import MainNav from '../navbar/MainNav';
 import CategoryBar from '../navbar/CategoryBar';
 import BottomNav from '../navbar/BottomNav';
 import HamburgerSidebar from '../navbar/HamburgerSidebar';
+import Footer from '../footer/Footer';
 
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -35,9 +36,9 @@ const Layout = () => {
       />
       <HamburgerSidebar isOpen={sidebarOpen} onClose={handleSidebarClose} />
       {/* Footer placeholder */}
-      <footer style={{ background: '#f8f9fa', padding: '1rem', marginTop: '2rem' }}>
-        <p>[Footer will go here]</p>
-      </footer>
+      
+       <Footer />
+    
     </>
   );
 };
