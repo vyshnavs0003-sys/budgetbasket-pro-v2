@@ -1,0 +1,236 @@
+.how-it-works-section {
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  padding: var(--section-padding);
+}
+
+.how-it-works-section::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: var(--primary-bg);
+  border-radius: 50%;
+}
+
+.how-it-works-section::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+  width: 300px;
+  height: 300px;
+  background: var(--primary-bg);
+  border-radius: 50%;
+}
+
+.section-header {
+  position: relative;
+  z-index: 2;
+}
+
+.section-subtitle {
+  color: var(--primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-block;
+  margin-bottom: var(--space-2);
+}
+
+.section-title {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--dark);
+  margin-bottom: var(--space-3);
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+}
+
+.section-description {
+  color: var(--text-secondary);
+  font-size: var(--text-base);
+  max-width: 500px;
+  margin: var(--space-4) auto 0;
+}
+
+.steps-row {
+  position: relative;
+  z-index: 2;
+}
+
+.step-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.step-connector {
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  transform: translateY(-50%);
+  color: var(--primary);
+  font-size: 20px;
+  opacity: 0.3;
+  z-index: 3;
+}
+
+.step-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-3);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
+  border: 1px solid rgba(40, 167, 69, 0.1);
+  height: 100%;
+}
+
+.step-wrapper.active .step-card {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-green);
+  border-color: rgba(40, 167, 69, 0.3);
+}
+
+.step-icon-wrapper {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto var(--space-3);
+}
+
+.step-number {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 25px;
+  height: 25px;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  z-index: 2;
+  border: 2px solid var(--white);
+}
+
+.step-icon {
+  width: 70px;
+  height: 70px;
+  background: var(--primary-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--primary);
+  transition: var(--transition-base);
+}
+
+.step-wrapper.active .step-icon {
+  background: var(--primary);
+  color: var(--white);
+  transform: scale(1.05);
+}
+
+.step-title {
+  font-size: var(--text-md);
+  font-weight: var(--font-semibold);
+  color: var(--dark);
+  margin-bottom: var(--space-2);
+}
+
+.step-description {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.step-hover-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: var(--transition-base);
+  margin-top: 0;
+  opacity: 0;
+}
+
+.step-wrapper.active .step-hover-details {
+  max-height: 50px;
+  margin-top: var(--space-2);
+  opacity: 1;
+}
+
+.step-hover-details p {
+  color: var(--primary);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  margin-bottom: var(--space-1);
+}
+
+.step-hover-details i {
+  color: var(--primary);
+  font-size: var(--text-sm);
+}
+
+.how-it-works-btn {
+  background: var(--primary);
+  border: none;
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+  transition: var(--transition-base);
+  cursor: pointer;
+}
+
+.how-it-works-btn:hover {
+  background: var(--primary-dark);
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: var(--text-2xl);
+  }
+  .step-card {
+    padding: var(--space-3);
+  }
+  .step-icon-wrapper {
+    width: 55px;
+    height: 55px;
+  }
+  .step-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
+  .step-number {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
+  .step-title {
+    font-size: var(--text-sm);
+  }
+}
