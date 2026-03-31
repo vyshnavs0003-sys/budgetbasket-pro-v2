@@ -1,8 +1,9 @@
+import React from "react";
+import HeroBanner from "../components/ui/home-ui/HeroBanner";
 const Home = () => {
   return (
     <div>
-      <h1>Home Page</h1>
-      <p>Home page content will go here.</p>
+      <HeroBanner />
     </div>
   );
 };
