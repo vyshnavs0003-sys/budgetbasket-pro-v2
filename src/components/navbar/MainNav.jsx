@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaSearch, FaBars } from 'react-icons/fa';
 import './MainNav.css';
 import logoImg from '../../assets/icons/logo-text.png';
@@ -6,6 +7,23 @@ import { useCart } from '../../context/CartContext';
 
 const MainNav = ({ remainingBudget = 1200, onMenuClick, onCartClick }) => {
   const { cartCount } = useCart();
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    const trimmedSearch = searchTerm.trim();
+
+    if (!trimmedSearch) return;
+
+    navigate(`/category/search?q=${encodeURIComponent(trimmedSearch)}`);
+    setSearchTerm('');
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
 
   return (
     <>
@@ -34,8 +52,11 @@ const MainNav = ({ remainingBudget = 1200, onMenuClick, onCartClick }) => {
                 type="text"
                 placeholder="Search products..."
                 className="search-input"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
-              <button className="search-btn" type="button">
+              <button className="search-btn" type="button" onClick={handleSearch}>
                 Search
               </button>
             </div>
@@ -67,6 +88,9 @@ const MainNav = ({ remainingBudget = 1200, onMenuClick, onCartClick }) => {
                 type="text"
                 placeholder="Search for products..."
                 className="mobile-search-input"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
             </div>
           </div>

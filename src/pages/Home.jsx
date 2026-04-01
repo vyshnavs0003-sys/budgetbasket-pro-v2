@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import HeroBanner from '../components/ui/home-ui/HeroBanner';
 import CategoryCard from '../components/ui/CategoryCard';
 import MyBasket from '../components/ui/MyBasket';
 import HowItWorks from '../components/ui/home-ui/HowItWorks';
-import ProductsCard from '../components/ui/ProductsCard';       
-
+import ProductsCard from '../components/ui/ProductCard';
 
 import groceryImg from '../assets/images/grocery.jpg';
 import fruitsImg from '../assets/images/fruits-veg.jpg';
@@ -14,41 +14,67 @@ import drinksImg from '../assets/images/drinks.jpg';
 import homeCareImg from '../assets/images/home-care.jpg';
 import personalCareImg from '../assets/images/personal-care.jpg';
 import babyCareImg from '../assets/images/baby-care.jpg';
-import "./Home.css"; 
+import './Home.css';
 
-import productsData from '../data/products.json';
+import { products as allProducts } from '../data/products';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   const categories = [
-    { name: "Grocery & Staples", image: groceryImg, itemCount: 45, link: "/category/grocery-and-staples" },
-    { name: "Fruits & Vegetables", image: fruitsImg, itemCount: 38, link: "/category/fruits-and-vegetables" },
-    { name: "Dairy & Bakery", image: dairyImg, itemCount: 32, link: "/category/dairy-and-bakery" },
-    { name: "Snacks & Branded Food", image: snacksImg, itemCount: 56, link: "/category/snacks-and-branded-food" },
-    { name: "Drinks & Beverages", image: drinksImg, itemCount: 28, link: "/category/drinks-and-beverages" },
-    { name: "Home Care", image: homeCareImg, itemCount: 24, link: "/category/home-care" },
-    { name: "Personal Care", image: personalCareImg, itemCount: 36, link: "/category/personal-care" },
-    { name: "Baby Care", image: babyCareImg, itemCount: 18, link: "/category/baby-care" },
-  ];
-
-  const productCategories = [
-    "Fruits & Vegetables",
-    "Grocery & Staples",
-    "Dairy & Bakery",
-    "Snacks & Branded Food",
-    "Drinks & Beverages",
-    "Home Care",
-    "Personal Care",
-    "Baby Care"
+    {
+      name: 'Grocery & Staples',
+      categoryId: 'grocery-and-staples',
+      image: groceryImg,
+    },
+    {
+      name: 'Fruits & Vegetables',
+      categoryId: 'fruits-and-vegetables',
+      image: fruitsImg,
+    },
+    {
+      name: 'Dairy & Bakery',
+      categoryId: 'dairy-and-bakery',
+      image: dairyImg,
+    },
+    {
+      name: 'Snacks & Branded Food',
+      categoryId: 'snacks-and-branded-food',
+      image: snacksImg,
+    },
+    {
+      name: 'Drinks & Beverages',
+      categoryId: 'drinks-and-beverages',
+      image: drinksImg,
+    },
+    {
+      name: 'Home Care',
+      categoryId: 'home-care',
+      image: homeCareImg,
+    },
+    {
+      name: 'Personal Care',
+      categoryId: 'personal-care',
+      image: personalCareImg,
+    },
+    {
+      name: 'Baby Care',
+      categoryId: 'baby-care',
+      image: babyCareImg,
+    },
   ];
 
   useEffect(() => {
-    setProducts(productsData.products || productsData);
+    setProducts(allProducts);
   }, []);
 
   const getProductsByCategory = (categoryName) => {
-    return products.filter(p => p.category === categoryName).slice(0, 5);
+    return products.filter((p) => p.category === categoryName).slice(0, 5);
+  };
+
+  const getItemCountByCategory = (categoryId) => {
+    return products.filter((p) => p.categoryId === categoryId).length;
   };
 
   return (
@@ -70,8 +96,8 @@ const Home = () => {
                     <CategoryCard
                       name={category.name}
                       image={category.image}
-                      itemCount={category.itemCount}
-                      link={category.link}
+                      itemCount={getItemCountByCategory(category.categoryId)}
+                      categoryId={category.categoryId}
                     />
                   </div>
                 ))}
@@ -84,8 +110,8 @@ const Home = () => {
                     <CategoryCard
                       name={category.name}
                       image={category.image}
-                      itemCount={category.itemCount}
-                      link={category.link}
+                      itemCount={getItemCountByCategory(category.categoryId)}
+                      categoryId={category.categoryId}
                     />
                   </div>
                 ))}
@@ -100,17 +126,17 @@ const Home = () => {
       </section>
 
       {/* Product Rows */}
-      {productCategories.map((category) => {
-        const categoryProducts = getProductsByCategory(category);
+      {categories.map((category) => {
+        const categoryProducts = getProductsByCategory(category.name);
         if (categoryProducts.length === 0) return null;
 
         return (
-          <section key={category} className="category-row py-4">
+          <section key={category.categoryId} className="category-row py-4">
             <div className="container">
-              <h2 className="app-section-title mb-4">{category}</h2>
+              <h2 className="app-section-title mb-4">{category.name}</h2>
 
               <div className="row">
-                {categoryProducts.map(product => (
+                {categoryProducts.map((product) => (
                   <div key={product.id} className="col-lg-2 col-md-3 col-6 mb-3">
                     <ProductsCard product={product} />
                   </div>
@@ -120,9 +146,10 @@ const Home = () => {
               <div className="text-center mt-3">
                 <button
                   className="view-all-btn"
-                  onClick={() => window.location.href = `/category/${category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
+                  onClick={() => navigate(`/category/${category.categoryId}`)}
+                  type="button"
                 >
-                  View All {category} →
+                  View All {category.name} →
                 </button>
               </div>
             </div>
