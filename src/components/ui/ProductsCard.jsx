@@ -1,8 +1,14 @@
-import React from 'react';
 import './ProductsCard.css';
+import { useCart } from '../../context/CartContext';
 
 const ProductCard = ({ product }) => {
-  const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+  const { addToCart, cartItems, increaseQty, decreaseQty } = useCart();
+
+  const discount = Math.round(
+    ((product.originalPrice - product.price) / product.originalPrice) * 100
+  );
+
+  const cartItem = cartItems.find((item) => item.id === product.id);
 
   return (
     <div className="product-card">
@@ -21,7 +27,36 @@ const ProductCard = ({ product }) => {
         </div>
 
         <p className="product-unit">{product.unit}</p>
-        <button className="add-btn">Add</button>
+
+        {!cartItem ? (
+          <button
+            className="add-btn"
+            type="button"
+            onClick={() => addToCart(product)}
+          >
+            Add
+          </button>
+        ) : (
+          <div className="quantity-controls">
+            <button
+              className="qty-btn"
+              type="button"
+              onClick={() => decreaseQty(product.id)}
+            >
+              -
+            </button>
+
+            <span className="qty-count">{cartItem.quantity}</span>
+
+            <button
+              className="qty-btn"
+              type="button"
+              onClick={() => increaseQty(product.id)}
+            >
+              +
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

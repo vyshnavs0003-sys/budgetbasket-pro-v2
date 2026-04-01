@@ -3,7 +3,6 @@ import Layout from './components/layout/Layout';
 
 import Home from './pages/Home';
 import About from './pages/About';
-import Cart from './pages/Cart';
 import Category from './pages/Category';
 import Contact from './pages/Contact';
 import Feedback from './pages/Feedback';
@@ -15,27 +14,30 @@ import CancellationRefund from './pages/CancellationRefund';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 
+import { CartProvider } from './context/CartContext';
+
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="feedback" element={<Feedback />} />
-          <Route path="offers" element={<Offers />} />
-          <Route path="my-orders" element={<MyOrders />} />
-          <Route path="my-profile" element={<MyProfile />} />
-          <Route path="monthly-planner" element={<MonthlyPlanner />} />
-          <Route path="cancellation-refund" element={<CancellationRefund />} />
-          <Route path="privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="terms" element={<Terms />} />
-          <Route path="category/:categoryName" element={<Category />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="feedback" element={<Feedback />} />
+            <Route path="offers" element={<Offers />} />
+            <Route path="my-orders" element={<MyOrders />} />
+            <Route path="my-profile" element={<MyProfile />} />
+            <Route path="monthly-planner" element={<MonthlyPlanner />} />
+            <Route path="cancellation-refund" element={<CancellationRefund />} />
+            <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="terms" element={<Terms />} />
+            <Route path="category/:categoryName" element={<Category />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 

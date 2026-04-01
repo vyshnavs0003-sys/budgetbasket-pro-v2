@@ -2,12 +2,11 @@ import { Link } from 'react-router-dom';
 import { FaShoppingCart, FaSearch, FaBars } from 'react-icons/fa';
 import './MainNav.css';
 import logoImg from '../../assets/icons/logo-text.png';
+import { useCart } from '../../context/CartContext';
 
-const MainNav = ({
-  cartCount = 2,
-  remainingBudget = 1200,
-  onMenuClick,
-}) => {
+const MainNav = ({ remainingBudget = 1200, onMenuClick, onCartClick }) => {
+  const { cartCount } = useCart();
+
   return (
     <>
       <nav className="mainnav">
@@ -43,10 +42,15 @@ const MainNav = ({
 
             {/* Right Section */}
             <div className="right-section">
-              <Link to="/cart" className="cart-section" aria-label="Go to cart">
+              <button
+                className="cart-section"
+                aria-label="Open cart"
+                type="button"
+                onClick={onCartClick}
+              >
                 <FaShoppingCart size={22} />
-                <span className="cart-badge">{cartCount}</span>
-              </Link>
+                {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+              </button>
 
               {/* Desktop only remaining badge */}
               <Link to="/monthly-planner" className="remaining-badge desktop-only">
