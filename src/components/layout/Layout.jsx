@@ -7,6 +7,7 @@ import BottomNav from '../navbar/BottomNav';
 import HamburgerSidebar from '../navbar/HamburgerSidebar';
 import CartDrawer from '../ui/CartDrawer';
 import Footer from '../footer/Footer';
+import MiniCartBar from '../ui/MiniCartBar';
 
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -47,7 +48,7 @@ const Layout = () => {
       <HamburgerSidebar isOpen={sidebarOpen} onClose={handleSidebarClose} />
 
       <CartDrawer isOpen={cartOpen} onClose={handleCartClose} />
-
+      <MiniCartBar />
       <Footer />
     </>
   );

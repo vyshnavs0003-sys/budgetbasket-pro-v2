@@ -22,7 +22,7 @@
 .category-image {
   width: 100%;
   aspect-ratio: 1 / 1;
-  max-height: 120px;           /* consistent for all screens */
+  max-height: 120px;           
   margin-bottom: var(--space-3);
   display: flex;
   align-items: center;
