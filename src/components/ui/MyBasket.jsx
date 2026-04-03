@@ -1,8 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { openAuthModal } from '../../redux/authSlice';
 import './MyBasket.css';
 import { useCart } from '../../context/CartContext';
 
 const MyBasket = () => {
+  const dispatch = useDispatch();
   const {
     cartCount,
     itemsTotal,
@@ -13,6 +16,11 @@ const MyBasket = () => {
 
   const freeDeliveryThreshold = 500;
   const discount = 0;
+
+  const handleCheckout = () => {
+    if (cartCount === 0) return;
+    dispatch(openAuthModal());
+  };
 
   return (
     <div className="my-basket">
@@ -26,6 +34,7 @@ const MyBasket = () => {
         className="checkout-btn"
         disabled={cartCount === 0}
         type="button"
+        onClick={handleCheckout}
       >
         Checkout
       </button>

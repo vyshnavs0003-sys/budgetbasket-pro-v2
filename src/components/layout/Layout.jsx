@@ -8,6 +8,7 @@ import HamburgerSidebar from '../navbar/HamburgerSidebar';
 import CartDrawer from '../ui/CartDrawer';
 import Footer from '../footer/Footer';
 import MiniCartBar from '../ui/MiniCartBar';
+import AuthModal from '../ui/AuthModal';  // ✅ Import AuthModal
 
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -50,6 +51,9 @@ const Layout = () => {
       <CartDrawer isOpen={cartOpen} onClose={handleCartClose} />
       <MiniCartBar />
       <Footer />
+
+      
+      <AuthModal />
     </>
   );
 };

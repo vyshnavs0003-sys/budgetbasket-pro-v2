@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaTimes, FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { openAuthModal } from '../../redux/authSlice';
 import './HamburgerSidebar.css';
 
 const HamburgerSidebar = ({ isOpen, onClose }) => {
+  const dispatch = useDispatch();
   const [showCategories, setShowCategories] = useState(false);
 
   const categories = [
@@ -21,8 +24,7 @@ const HamburgerSidebar = ({ isOpen, onClose }) => {
     { name: 'My Orders', path: '/my-orders' },
     { name: 'Offers', path: '/offers' },
     { name: 'Contact Us', path: '/contact' },
-    { name: 'Login', path: '#' },
-    { name: 'Register', path: '#' },
+    
   ];
 
   const slugify = (text) =>
@@ -35,6 +37,11 @@ const HamburgerSidebar = ({ isOpen, onClose }) => {
   const handleCategoryClick = () => setShowCategories(true);
   const handleBackClick = () => setShowCategories(false);
   const handleItemClick = () => onClose();
+
+  const handleAuthClick = () => {
+    onClose();          // Close sidebar
+    dispatch(openAuthModal());  // Open auth modal
+  };
 
   return (
     <>
@@ -89,6 +96,23 @@ const HamburgerSidebar = ({ isOpen, onClose }) => {
                 <FaChevronRight className="arrow" />
               </Link>
             ))}
+            {/* Login and Register buttons */}
+            <button
+              className="sidebar-item"
+              onClick={handleAuthClick}
+              style={{ width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer' }}
+            >
+              <span>Login</span>
+              <FaChevronRight className="arrow" />
+            </button>
+            <button
+              className="sidebar-item"
+              onClick={handleAuthClick}
+              style={{ width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer' }}
+            >
+              <span>Register</span>
+              <FaChevronRight className="arrow" />
+            </button>
           </div>
         )}
       </div>

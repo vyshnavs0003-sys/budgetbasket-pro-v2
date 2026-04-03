@@ -1,11 +1,14 @@
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaThLarge, FaShoppingCart, FaUser } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { openAuthModal } from '../../redux/authSlice';
 import './BottomNav.css';
 import { useCart } from '../../context/CartContext';
 
 const BottomNav = ({ onMenuClick, onCategoryClick, onCartClick }) => {
   const location = useLocation();
   const { cartCount } = useCart();
+  const dispatch = useDispatch();
 
   return (
     <div className="bottom-nav mobile-only">
@@ -44,11 +47,15 @@ const BottomNav = ({ onMenuClick, onCategoryClick, onCartClick }) => {
         <span>Cart {cartCount > 0 ? `(${cartCount})` : ''}</span>
       </button>
 
-      {/* Account Link */}
-      <Link to="/my-profile" className="bottom-nav-item">
+      {/* Account Button */}
+      <button
+        className="bottom-nav-item"
+        onClick={() => dispatch(openAuthModal())}
+        type="button"
+      >
         <FaUser className="bottom-nav-icon" />
         <span>Account</span>
-      </Link>
+      </button>
     </div>
   );
 };

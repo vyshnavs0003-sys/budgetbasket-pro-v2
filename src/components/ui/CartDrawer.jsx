@@ -12,6 +12,8 @@ import {
   FaInfoCircle,
   FaChevronRight,
 } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { openAuthModal } from '../../redux/authSlice';
 import './CartDrawer.css';
 import { useCart } from '../../context/CartContext';
 
@@ -20,6 +22,7 @@ const CartDrawer = ({
   onClose,
   deliveryMinutes = 17,
 }) => {
+  const dispatch = useDispatch();
   const {
     cartItems,
     increaseQty,
@@ -194,10 +197,11 @@ const CartDrawer = ({
             <span className="cart-total-label">TOTAL</span>
           </div>
 
-          <Link to="/login" className="cart-login-btn">
+          
+          <button className="cart-login-btn" onClick={() => dispatch(openAuthModal())}>
             <span>Login to Proceed</span>
             <FaChevronRight />
-          </Link>
+          </button>
         </div>
       </aside>
     </>

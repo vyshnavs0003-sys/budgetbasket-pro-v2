@@ -1,9 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { openAuthModal } from "../../redux/authSlice";
 import { useCart } from "../../context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
 import "./MiniCartBar.css";
 
 const MiniCartBar = () => {
+  const dispatch = useDispatch();
   const { cartItems, grandTotal, clearCart } = useCart();
 
   // Total quantity of all products
@@ -13,6 +16,10 @@ const MiniCartBar = () => {
   );
 
   if (!cartItems || cartItems.length === 0) return null;
+
+  const handleCheckout = () => {
+    dispatch(openAuthModal());
+  };
 
   return (
     <div className="mini-cart-bar">
@@ -24,7 +31,7 @@ const MiniCartBar = () => {
       <div className="cart-actions">
         <button
           className="checkout-btn"
-          onClick={() => (window.location.href = "/checkout")}
+          onClick={handleCheckout}
         >
           Checkout
         </button>

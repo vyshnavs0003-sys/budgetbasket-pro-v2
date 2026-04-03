@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { openAuthModal } from '../../redux/authSlice';
 import './TopBar.css';
 
 const TopBar = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="topbar">
       <div className="container d-flex justify-content-between align-items-center">
@@ -22,8 +26,24 @@ const TopBar = () => {
           </select>
 
           <Link to="/contact" className="top-link">Contact</Link>
-          <Link to="/login" className="top-link">Login</Link>
-          <Link to="/register" className="top-link">Register</Link>
+
+          {/* Login button */}
+          <button 
+            onClick={() => dispatch(openAuthModal())} 
+            className="top-link"
+            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+          >
+            Login
+          </button>
+
+          {/* Register button */}
+          <button 
+            onClick={() => dispatch(openAuthModal())} 
+            className="top-link"
+            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+          >
+            Register
+          </button>
         </div>
       </div>
     </div>
