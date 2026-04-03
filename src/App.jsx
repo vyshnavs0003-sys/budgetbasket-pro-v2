@@ -7,7 +7,6 @@ import About from './pages/About';
 import Category from './pages/Category';
 import Contact from './pages/Contact';
 import Feedback from './pages/Feedback';
-import MonthlyPlanner from './pages/MonthlyPlanner';
 import MyOrders from './pages/MyOrders';
 import MyProfile from './pages/MyProfile';
 import Offers from './pages/Offers';

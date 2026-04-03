@@ -1,13 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaClock, FaBoxOpen, FaTags } from 'react-icons/fa';
 import './HeroBanner.css';
 import heroMan from '../../../assets/images/hero-man-01.png';
 
 const HeroBanner = () => {
+  const navigate = useNavigate();
+
+  const handleShopNow = () => {
+    navigate('/category/grocery-and-staples');
+  };
+
   return (
     <section className="hero-banner">
       <div className="app-container">
         <div className="hero-banner-wrapper">
+
           {/* Left Content */}
           <div className="hero-content">
             <h1 className="hero-title">
@@ -20,9 +27,12 @@ const HeroBanner = () => {
             </p>
 
             <div className="hero-actions">
-              <Link to="/category" className="hero-btn hero-btn-primary">
-                Shop Now
-              </Link>
+              <button
+                className="hero-btn hero-btn-primary"
+                onClick={handleShopNow}
+              >
+                Shop Now 
+              </button>
 
               <Link to="/offers" className="hero-btn hero-btn-secondary">
                 View Offers
@@ -49,13 +59,13 @@ const HeroBanner = () => {
 
           {/* Right Image */}
           <div className="hero-image-section">
-            
             <img
               src={heroMan}
               alt="Fresh grocery delivery"
               className="hero-main-image"
             />
           </div>
+
         </div>
       </div>
     </section>

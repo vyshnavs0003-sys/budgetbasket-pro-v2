@@ -23,55 +23,23 @@ const Home = () => {
   const navigate = useNavigate();
 
   const categories = [
-    {
-      name: 'Grocery & Staples',
-      categoryId: 'grocery-and-staples',
-      image: groceryImg,
-    },
-    {
-      name: 'Fruits & Vegetables',
-      categoryId: 'fruits-and-vegetables',
-      image: fruitsImg,
-    },
-    {
-      name: 'Dairy & Bakery',
-      categoryId: 'dairy-and-bakery',
-      image: dairyImg,
-    },
-    {
-      name: 'Snacks & Branded Food',
-      categoryId: 'snacks-and-branded-food',
-      image: snacksImg,
-    },
-    {
-      name: 'Drinks & Beverages',
-      categoryId: 'drinks-and-beverages',
-      image: drinksImg,
-    },
-    {
-      name: 'Home Care',
-      categoryId: 'home-care',
-      image: homeCareImg,
-    },
-    {
-      name: 'Personal Care',
-      categoryId: 'personal-care',
-      image: personalCareImg,
-    },
-    {
-      name: 'Baby Care',
-      categoryId: 'baby-care',
-      image: babyCareImg,
-    },
+    { name: 'Grocery & Staples', categoryId: 'grocery-and-staples', image: groceryImg },
+    { name: 'Fruits & Vegetables', categoryId: 'fruits-and-vegetables', image: fruitsImg },
+    { name: 'Dairy & Bakery', categoryId: 'dairy-and-bakery', image: dairyImg },
+    { name: 'Snacks & Branded Food', categoryId: 'snacks-and-branded-food', image: snacksImg },
+    { name: 'Drinks & Beverages', categoryId: 'drinks-and-beverages', image: drinksImg },
+    { name: 'Home Care', categoryId: 'home-care', image: homeCareImg },
+    { name: 'Personal Care', categoryId: 'personal-care', image: personalCareImg },
+    { name: 'Baby Care', categoryId: 'baby-care', image: babyCareImg },
   ];
 
   useEffect(() => {
     setProducts(allProducts);
   }, []);
 
-  const getProductsByCategory = (categoryName) => {
-    return products.filter((p) => p.category === categoryName).slice(0, 5);
-  };
+ const getProductsByCategory = (categoryName) => {
+  return products.filter((p) => p.category === categoryName).slice(0, 6);
+};
 
   const getItemCountByCategory = (categoryId) => {
     return products.filter((p) => p.categoryId === categoryId).length;
@@ -135,6 +103,7 @@ const Home = () => {
             <div className="container">
               <h2 className="app-section-title mb-4">{category.name}</h2>
 
+              {/* Only one row */}
               <div className="row">
                 {categoryProducts.map((product) => (
                   <div key={product.id} className="col-lg-2 col-md-3 col-6 mb-3">
