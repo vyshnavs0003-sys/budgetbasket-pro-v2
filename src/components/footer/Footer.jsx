@@ -13,7 +13,7 @@ import "./Footer.css";
 import googlePlayImg from "../../assets/images/googleplay.png";
 import appStoreImg from "../../assets/images/appstore.png";
 
-const Footer = () => {
+const Footer = ({ onBudgetClick }) => {  
   const categories = [
     "Fruits & Vegetables",
     "Dairy & Bakery",
@@ -67,6 +67,7 @@ const Footer = () => {
               <li><Link to="/offers">Offers</Link></li>
               <li><Link to="/contact">Contact</Link></li>
               <li><Link to="/feedback">Feedback</Link></li>
+              <li><button onClick={onBudgetClick} className="footer-link-btn">Monthly Planner</button></li>
               <li><Link to="/cancellation-refund">Cancellation & Refund</Link></li>
               <li><Link to="/privacy-policy">Privacy Policy</Link></li>
               <li><Link to="/terms">Terms & Conditions</Link></li>

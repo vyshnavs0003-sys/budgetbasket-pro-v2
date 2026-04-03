@@ -30,7 +30,6 @@ function App() {
             <Route path="offers" element={<Offers />} />
             <Route path="my-orders" element={<MyOrders />} />
             <Route path="my-profile" element={<MyProfile />} />
-            <Route path="monthly-planner" element={<MonthlyPlanner />} />
             <Route path="cancellation-refund" element={<CancellationRefund />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="terms" element={<Terms />} />

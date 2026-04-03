@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './CategoryBar.css';
 
-const CategoryBar = () => {
+const CategoryBar = ({ onBudgetClick }) => {  
   const [showDropdown, setShowDropdown] = useState(false);
 
   const categories = [
@@ -56,7 +56,9 @@ const CategoryBar = () => {
 
         {/* Right - Navigation Links */}
         <div className="category-right">
-          <Link to="/monthly-planner">Monthly Planner</Link>
+          <button onClick={onBudgetClick} className="category-link-btn">
+            Monthly Planner
+          </button>
           <Link to="/my-orders">My Orders</Link>
           <Link to="/my-profile">My Profile</Link>
           <Link to="/offers">Offers</Link>

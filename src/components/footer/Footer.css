@@ -32,14 +32,24 @@
   margin-bottom: 8px;
 }
 
-.footer-links a {
+/* ✅ Style for normal links and button (Monthly Planner) */
+.footer-links a,
+.footer-link-btn {
   text-decoration: none;
   color: var(--text-inverse);
   display: inline-block;
   transition: 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  text-align: left;
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-link-btn:hover {
   color: var(--accent-green);
   transform: translateX(5px);
 }
@@ -171,15 +181,28 @@
     text-align: center;
   }
 
+  /* ✅ Ensure buttons inside li also center properly on mobile */
+  .col-6.col-md-2 .footer-links li button,
+  .col-6.col-md-3 .footer-links li button {
+    margin: 0 auto;
+    text-align: center;
+  }
+
   .col-6.col-md-2 .footer-links a,
-  .col-6.col-md-3 .footer-links a {
+  .col-6.col-md-3 .footer-links a,
+  .col-6.col-md-2 .footer-link-btn,
+  .col-6.col-md-3 .footer-link-btn {
     padding: 5px 0;
     font-size: 13px;
     color: var(--text-inverse);
+    display: block;
+    text-align: center;
   }
 
   .col-6.col-md-2 .footer-links a:hover,
-  .col-6.col-md-3 .footer-links a:hover {
+  .col-6.col-md-3 .footer-links a:hover,
+  .col-6.col-md-2 .footer-link-btn:hover,
+  .col-6.col-md-3 .footer-link-btn:hover {
     color: var(--accent-green);
     transform: translateY(-2px);
   }
@@ -215,7 +238,9 @@
 
 @media screen and (max-width: 480px) {
   .col-6.col-md-2 .footer-links a,
-  .col-6.col-md-3 .footer-links a {
+  .col-6.col-md-3 .footer-links a,
+  .col-6.col-md-2 .footer-link-btn,
+  .col-6.col-md-3 .footer-link-btn {
     font-size: 11px;
   }
 

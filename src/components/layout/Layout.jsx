@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import TopBar from '../navbar/TopBar';
 import MainNav from '../navbar/MainNav';
 import CategoryBar from '../navbar/CategoryBar';
@@ -8,12 +9,37 @@ import HamburgerSidebar from '../navbar/HamburgerSidebar';
 import CartDrawer from '../ui/CartDrawer';
 import Footer from '../footer/Footer';
 import MiniCartBar from '../ui/MiniCartBar';
-import AuthModal from '../ui/AuthModal';  // ✅ Import AuthModal
+import AuthModal from '../ui/AuthModal';
+import BudgetDrawer from '../ui/BudgetDrawer';
+import BudgetWarningModal from '../ui/BudgetWarningModal';
+import { useCart } from '../../context/CartContext';
 
 const Layout = () => {
+  const { itemsTotal } = useCart();
+  const monthlyBudget = useSelector((state) => state.budget.monthlyBudget);
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [budgetDrawerOpen, setBudgetDrawerOpen] = useState(false);
+  const [showBudgetWarning, setShowBudgetWarning] = useState(false);
+  const [hasShownWarning, setHasShownWarning] = useState(false);
+
+  
+  useEffect(() => {
+    if (itemsTotal > monthlyBudget && !hasShownWarning && monthlyBudget > 0) {
+      setShowBudgetWarning(true);
+      setHasShownWarning(true);
+    }
+    
+    if (itemsTotal <= monthlyBudget) {
+      setHasShownWarning(false);
+    }
+  }, [itemsTotal, monthlyBudget, hasShownWarning]);
+
+  useEffect(() => {
+    setHasShownWarning(false);
+  }, [monthlyBudget]);
 
   const handleMenuClick = () => setSidebarOpen(!sidebarOpen);
   const handleSearchClick = () => setSearchOpen(!searchOpen);
@@ -23,18 +49,27 @@ const Layout = () => {
   const handleCartOpen = () => setCartOpen(true);
   const handleCartClose = () => setCartOpen(false);
 
+  const openBudgetDrawer = () => setBudgetDrawerOpen(true);
+  const closeBudgetDrawer = () => setBudgetDrawerOpen(false);
+
+  const closeWarningModal = () => setShowBudgetWarning(false);
+  const handleReviewCart = () => {
+    setShowBudgetWarning(false);
+    handleCartOpen(); 
+  };
+
   return (
     <>
       <TopBar />
 
       <MainNav
-        remainingBudget={1200}
         onSearchClick={handleSearchClick}
         onMenuClick={handleMenuClick}
         onCartClick={handleCartOpen}
+        onBudgetClick={openBudgetDrawer}
       />
 
-      <CategoryBar />
+      <CategoryBar onBudgetClick={openBudgetDrawer} />
 
       <main>
         <Outlet />
@@ -44,16 +79,29 @@ const Layout = () => {
         onMenuClick={handleMenuClick}
         onCategoryClick={handleCategoryClick}
         onCartClick={handleCartOpen}
+        onBudgetClick={openBudgetDrawer}
       />
 
-      <HamburgerSidebar isOpen={sidebarOpen} onClose={handleSidebarClose} />
+      <HamburgerSidebar
+        isOpen={sidebarOpen}
+        onClose={handleSidebarClose}
+        onBudgetClick={openBudgetDrawer}
+      />
 
       <CartDrawer isOpen={cartOpen} onClose={handleCartClose} />
       <MiniCartBar />
-      <Footer />
+      <Footer onBudgetClick={openBudgetDrawer} />
 
-      
       <AuthModal />
+      <BudgetDrawer isOpen={budgetDrawerOpen} onClose={closeBudgetDrawer} />
+
+      <BudgetWarningModal
+        isOpen={showBudgetWarning}
+        onClose={closeWarningModal}
+        onReviewCart={handleReviewCart}
+        cartTotal={itemsTotal}
+        budget={monthlyBudget}
+      />
     </>
   );
 };

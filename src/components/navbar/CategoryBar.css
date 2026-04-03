@@ -74,6 +74,18 @@
 .desktop-only {
   display: block;
 }
+.category-link-btn {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.category-link-btn:hover {
+  color: var(--primary);
+}
 
 @media (max-width: 768px) {
   .desktop-only {

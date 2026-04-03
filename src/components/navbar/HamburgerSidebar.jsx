@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { openAuthModal } from '../../redux/authSlice';
 import './HamburgerSidebar.css';
 
-const HamburgerSidebar = ({ isOpen, onClose }) => {
+const HamburgerSidebar = ({ isOpen, onClose, onBudgetClick }) => {  
   const dispatch = useDispatch();
   const [showCategories, setShowCategories] = useState(false);
 
@@ -18,13 +18,12 @@ const HamburgerSidebar = ({ isOpen, onClose }) => {
     'Home Care',
   ];
 
+  
   const menuItems = [
-    { name: 'Monthly Planner', path: '/monthly-planner' },
     { name: 'My Profile', path: '/my-profile' },
     { name: 'My Orders', path: '/my-orders' },
     { name: 'Offers', path: '/offers' },
     { name: 'Contact Us', path: '/contact' },
-    
   ];
 
   const slugify = (text) =>
@@ -39,21 +38,20 @@ const HamburgerSidebar = ({ isOpen, onClose }) => {
   const handleItemClick = () => onClose();
 
   const handleAuthClick = () => {
-    onClose();          // Close sidebar
-    dispatch(openAuthModal());  // Open auth modal
+    onClose();
+    dispatch(openAuthModal());
+  };
+
+  const handleBudgetClick = () => {
+    onClose();          
+    onBudgetClick();    
   };
 
   return (
     <>
-      {/* Overlay */}
-      <div
-        className={`sidebar-overlay ${isOpen ? 'active' : ''}`}
-        onClick={onClose}
-      ></div>
+      <div className={`sidebar-overlay ${isOpen ? 'active' : ''}`} onClick={onClose}></div>
 
-      {/* Sidebar */}
       <div className={`sidebar-menu ${isOpen ? 'open' : ''}`}>
-        {/* Header */}
         <div className="sidebar-header">
           <span>Menu</span>
           <FaTimes className="close-sidebar" onClick={onClose} />
@@ -61,7 +59,6 @@ const HamburgerSidebar = ({ isOpen, onClose }) => {
 
         {showCategories ? (
           <>
-            {/* Submenu Header */}
             <div className="submenu-header">
               <FaChevronLeft onClick={handleBackClick} style={{ cursor: 'pointer' }} />
               <span>Categories</span>
@@ -85,6 +82,17 @@ const HamburgerSidebar = ({ isOpen, onClose }) => {
               <span>Categories</span>
               <FaChevronRight className="arrow" />
             </div>
+
+            <button
+              className="sidebar-item"
+              onClick={handleBudgetClick}
+              style={{ width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer' }}
+            >
+              <span>Monthly Planner</span>
+              <FaChevronRight className="arrow" />
+            </button>
+
+            {/* Other menu items (links) */}
             {menuItems.map((item, idx) => (
               <Link
                 key={idx}
@@ -96,6 +104,7 @@ const HamburgerSidebar = ({ isOpen, onClose }) => {
                 <FaChevronRight className="arrow" />
               </Link>
             ))}
+
             {/* Login and Register buttons */}
             <button
               className="sidebar-item"

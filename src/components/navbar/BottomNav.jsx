@@ -5,7 +5,7 @@ import { openAuthModal } from '../../redux/authSlice';
 import './BottomNav.css';
 import { useCart } from '../../context/CartContext';
 
-const BottomNav = ({ onMenuClick, onCategoryClick, onCartClick }) => {
+const BottomNav = ({ onMenuClick, onCategoryClick, onCartClick, onBudgetClick }) => {
   const location = useLocation();
   const { cartCount } = useCart();
   const dispatch = useDispatch();
