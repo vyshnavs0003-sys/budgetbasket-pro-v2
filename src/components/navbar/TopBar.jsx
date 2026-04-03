@@ -16,15 +16,6 @@ const TopBar = () => {
         </div>
 
         <div className="topbar-right d-flex align-items-center gap-3">
-          <select className="location-select" aria-label="Select location">
-            <option>Kozhikode</option>
-            <option>Mankavu</option>
-            <option>Vellimadukunnu</option>
-            <option>Chevayoor</option>
-            <option>West Hill</option>
-            <option>Palazhi</option>
-          </select>
-
           <Link to="/contact" className="top-link">Contact</Link>
 
           {/* Login button */}
