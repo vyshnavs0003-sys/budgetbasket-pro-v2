@@ -24,6 +24,22 @@
   margin-bottom: var(--space-2);
   background-color: var(--bg-light);
   border-radius: var(--radius-sm);
+  position: relative;  
+}
+
+/* Offer badge */
+.offer-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #ff5722;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .product-image img {
@@ -164,6 +180,13 @@
 
   .product-image {
     height: 120px;
+  }
+
+  .offer-badge {
+    top: 4px;
+    right: 4px;
+    padding: 2px 6px;
+    font-size: 9px;
   }
 
   .product-name {

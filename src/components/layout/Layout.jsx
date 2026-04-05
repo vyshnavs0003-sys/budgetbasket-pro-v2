@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import TopBar from '../navbar/TopBar';
 import MainNav from '../navbar/MainNav';
 import CategoryBar from '../navbar/CategoryBar';
@@ -13,10 +13,14 @@ import AuthModal from '../ui/AuthModal';
 import BudgetDrawer from '../ui/BudgetDrawer';
 import BudgetWarningModal from '../ui/BudgetWarningModal';
 import { useCart } from '../../context/CartContext';
+import { fetchProducts } from '../../redux/productsSlice';
+import { refreshOffers } from '../../redux/offersSlice';  // ADD THIS IMPORT
 
 const Layout = () => {
+  const dispatch = useDispatch();
   const { itemsTotal } = useCart();
   const monthlyBudget = useSelector((state) => state.budget.monthlyBudget);
+  const { items: products, status } = useSelector((state) => state.products);  // Added products items
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -25,7 +29,21 @@ const Layout = () => {
   const [showBudgetWarning, setShowBudgetWarning] = useState(false);
   const [hasShownWarning, setHasShownWarning] = useState(false);
 
-  
+  // Step 5: Fetch products when app loads (only once)
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchProducts());
+    }
+  }, [dispatch, status]);
+
+  // Step 8: Once products are loaded, generate or load offers
+  useEffect(() => {
+    if (status === 'succeeded' && products.length > 0) {
+      dispatch(refreshOffers({ allProducts: products }));
+    }
+  }, [status, products, dispatch]);
+
+  // Budget warning effects (existing)
   useEffect(() => {
     if (itemsTotal > monthlyBudget && !hasShownWarning && monthlyBudget > 0) {
       setShowBudgetWarning(true);

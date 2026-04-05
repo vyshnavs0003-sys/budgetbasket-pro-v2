@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import HeroBanner from '../components/ui/home-ui/HeroBanner';
 import CategoryCard from '../components/ui/CategoryCard';
 import MyBasket from '../components/ui/MyBasket';
@@ -17,11 +18,9 @@ import personalCareImg from '../assets/images/personal-care.jpg';
 import babyCareImg from '../assets/images/baby-care.jpg';
 import './Home.css';
 
-import { products as allProducts } from '../data/products';
-
 const Home = () => {
-  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const { items: products, status } = useSelector((state) => state.products);
 
   const categories = [
     { name: 'Grocery & Staples', categoryId: 'grocery-and-staples', image: groceryImg },
@@ -34,10 +33,6 @@ const Home = () => {
     { name: 'Baby Care', categoryId: 'baby-care', image: babyCareImg },
   ];
 
-  useEffect(() => {
-    setProducts(allProducts);
-  }, []);
-
   const getProductsByCategory = (categoryName) => {
     return products.filter((p) => p.category === categoryName).slice(0, 6);
   };
@@ -46,9 +41,20 @@ const Home = () => {
     return products.filter((p) => p.categoryId === categoryId).length;
   };
 
+  // Show loading state while products are being fetched
+  if (status === 'loading') {
+    return <div className="text-center py-5">Loading products...</div>;
+  }
+
+  if (status === 'failed') {
+    return <div className="text-center py-5 text-danger">Failed to load products. Please refresh.</div>;
+  }
+
   return (
     <div>
       <HeroBanner />
+
+      
 
       {/* Categories + MyBasket Section */}
       <section className="home-categories-section">
@@ -76,7 +82,9 @@ const Home = () => {
         </div>
       </section>
 
-      
+      {/* Daily Offer Banner */}
+      <DailyOffer />
+
       {/* Product Rows */}
       {categories.map((category) => {
         const categoryProducts = getProductsByCategory(category.name);

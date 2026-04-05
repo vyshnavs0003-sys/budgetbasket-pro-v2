@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ProductCard from '../components/ui/ProductCard';
 import MyBasket from '../components/ui/MyBasket';
-import productsData from '../data/products.json';
 import './Category.css';
 
 const Category = () => {
   const { categoryName } = useParams();
   const [searchParams] = useSearchParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
+  
+ 
+  const { items: allProducts, status } = useSelector((state) => state.products);
 
   const searchQuery = searchParams.get('q')?.toLowerCase().trim() || '';
-  const allProducts = productsData.products || productsData;
-
   const isSearchPage = categoryName === 'search';
 
   useEffect(() => {
+    if (!allProducts.length) return; 
+
     if (isSearchPage) {
       const matchedProducts = allProducts.filter((product) => {
         const searchableText = `
@@ -38,7 +41,28 @@ const Category = () => {
 
       setFilteredProducts(matchedProducts);
     }
-  }, [categoryName, searchQuery]);
+  }, [categoryName, searchQuery, allProducts, isSearchPage]);
+
+  
+  if (status === 'loading') {
+    return (
+      <section className="category-page py-4">
+        <div className="container">
+          <div className="text-center py-5">Loading products...</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (status === 'failed') {
+    return (
+      <section className="category-page py-4">
+        <div className="container">
+          <div className="text-center py-5 text-danger">Failed to load products. Please refresh.</div>
+        </div>
+      </section>
+    );
+  }
 
   const pageTitle = isSearchPage
     ? `Search Results for "${searchQuery}"`
