@@ -5,6 +5,7 @@ import CategoryCard from '../components/ui/CategoryCard';
 import MyBasket from '../components/ui/MyBasket';
 import HowItWorks from '../components/ui/home-ui/HowItWorks';
 import ProductsCard from '../components/ui/ProductCard';
+import DailyOffer from '../components/ui/DailyOffer';
 
 import groceryImg from '../assets/images/grocery.jpg';
 import fruitsImg from '../assets/images/fruits-veg.jpg';
@@ -37,9 +38,9 @@ const Home = () => {
     setProducts(allProducts);
   }, []);
 
- const getProductsByCategory = (categoryName) => {
-  return products.filter((p) => p.category === categoryName).slice(0, 6);
-};
+  const getProductsByCategory = (categoryName) => {
+    return products.filter((p) => p.category === categoryName).slice(0, 6);
+  };
 
   const getItemCountByCategory = (categoryId) => {
     return products.filter((p) => p.categoryId === categoryId).length;
@@ -47,34 +48,17 @@ const Home = () => {
 
   return (
     <div>
-      {/* Hero Banner */}
       <HeroBanner />
 
       {/* Categories + MyBasket Section */}
-      <section className="py-4">
+      <section className="home-categories-section">
         <div className="container">
-          <div className="row">
-            <div className="col-md-8">
+          <div className="home-layout">
+            <div className="home-categories">
               <h2 className="app-section-title">Shop by Category</h2>
-
-              {/* First row of 4 categories */}
-              <div className="row">
-                {categories.slice(0, 4).map((category, idx) => (
-                  <div key={idx} className="col-md-3 col-6 mb-4">
-                    <CategoryCard
-                      name={category.name}
-                      image={category.image}
-                      itemCount={getItemCountByCategory(category.categoryId)}
-                      categoryId={category.categoryId}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Second row of 4 categories */}
-              <div className="row">
-                {categories.slice(4, 8).map((category, idx) => (
-                  <div key={idx + 4} className="col-md-3 col-6 mb-4">
+              <div className="categories-grid">
+                {categories.map((category, idx) => (
+                  <div key={idx} className="category-card-wrapper">
                     <CategoryCard
                       name={category.name}
                       image={category.image}
@@ -85,33 +69,30 @@ const Home = () => {
                 ))}
               </div>
             </div>
-
-            <div className="col-md-4">
+            <div className="home-basket">
               <MyBasket />
             </div>
           </div>
         </div>
       </section>
 
+      
       {/* Product Rows */}
       {categories.map((category) => {
         const categoryProducts = getProductsByCategory(category.name);
         if (categoryProducts.length === 0) return null;
 
         return (
-          <section key={category.categoryId} className="category-row py-4">
+          <section key={category.categoryId} className="home-product-row">
             <div className="container">
               <h2 className="app-section-title mb-4">{category.name}</h2>
-
-              {/* Only one row */}
-              <div className="row">
+              <div className="product-row-scroll">
                 {categoryProducts.map((product) => (
-                  <div key={product.id} className="col-lg-2 col-md-3 col-6 mb-3">
+                  <div key={product.id} className="product-card-wrapper">
                     <ProductsCard product={product} />
                   </div>
                 ))}
               </div>
-
               <div className="text-center mt-3">
                 <button
                   className="view-all-btn"
@@ -126,7 +107,6 @@ const Home = () => {
         );
       })}
 
-      {/* How It Works */}
       <HowItWorks />
     </div>
   );

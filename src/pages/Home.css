@@ -1,3 +1,94 @@
+/* Home.css */
+
+/* CATEGORIES + BASKET LAYOUT */
+.home-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.home-categories {
+  flex: 2;
+  min-width: 0;
+}
+
+.home-basket {
+  flex: 1;
+  min-width: 280px;
+}
+
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.category-card-wrapper {
+  width: 100%;
+}
+
+/* PRODUCT ROWS */
+
+.product-row-scroll {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+
+@media (max-width: 991px) {
+  .product-row-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+  .product-card-wrapper {
+    flex: 0 0 180px;
+    scroll-snap-align: start;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .product-card-wrapper {
+    flex: 0 0 150px;
+  }
+}
+
+/* CATEGORIES RESPONSIVE */
+@media (max-width: 992px) {
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-layout {
+    flex-direction: column;
+  }
+  .home-basket {
+    order: 2;
+    margin-top: 20px;
+  }
+  .categories-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .categories-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+}
+
+/* VIEW ALL BUTTON */
 .view-all-btn {
   background: transparent;
   color: var(--primary);
@@ -11,6 +102,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  margin-top: 10px;
 }
 
 .view-all-btn:hover {
@@ -18,4 +110,37 @@
   color: var(--white);
   transform: translateY(-2px);
   box-shadow: var(--shadow-green);
+}
+
+/* BASKET STICKY ON DESKTOP */
+@media (min-width: 769px) {
+  .home-basket {
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+  }
+}
+
+/*  SECTION SPACING */
+.home-categories-section {
+  padding: 20px 0;
+}
+
+.home-product-row {
+  margin: 20px 0;
+}
+
+/* Scrollbar styling */
+@media (max-width: 991px) {
+  .product-row-scroll::-webkit-scrollbar {
+    height: 4px;
+  }
+  .product-row-scroll::-webkit-scrollbar-track {
+    background: var(--border-light);
+    border-radius: 10px;
+  }
+  .product-row-scroll::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+  }
 }
