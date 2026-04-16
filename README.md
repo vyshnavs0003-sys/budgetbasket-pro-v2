@@ -1,5 +1,7 @@
 # BudgetBasket
 
+Live demo: [https://cosmic-croquembouche-be6178.netlify.app/]
+
 A responsive grocery shopping web application that helps users manage their monthly grocery expenses while shopping.
 
 ## Features
