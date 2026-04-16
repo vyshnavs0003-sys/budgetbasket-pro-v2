@@ -14,7 +14,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../../assets/images/cartographer.png'); 
+  background-image: url('/images/cartographer.png'); 
   background-repeat: repeat;
   opacity: 0.15;
   pointer-events: none;

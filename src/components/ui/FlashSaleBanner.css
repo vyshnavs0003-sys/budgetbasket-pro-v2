@@ -85,7 +85,7 @@
 .flash-banner-image {
   flex: 1;
   height: 320px;
-  background: url("../../assets/images/baby-offer.png") no-repeat center;
+  background: url("/images/baby-offer.png") no-repeat center;
   background-size: contain;
 }
 

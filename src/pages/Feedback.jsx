@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./Feedback.css";
+import GroceryImg from "../assets/images/contact-hero-01.jpg"
+
 
 const Feedback = () => {
   const [formData, setFormData] = useState({
@@ -69,7 +71,7 @@ const Feedback = () => {
       {/* HERO */}
       <section className="feedback-hero">
         <img
-          src="src\assets\images\contact-hero-01.jpg"
+          src={GroceryImg}
           alt="Vegetables"
           className="feedback-hero-img"
         />

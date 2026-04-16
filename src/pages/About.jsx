@@ -1,4 +1,5 @@
 import React from 'react';
+import AboutHero from "../assets/images/about-hero1.jpg";
 import './About.css';
 
 const About = () => {
@@ -19,7 +20,7 @@ const About = () => {
 
             <div className="col-lg-6 fade-in">
               <img 
-                src="src\assets\images\about-hero1.jpg" 
+                src={AboutHero}
                 alt="About"
                 className="img-fluid app-radius-xl app-shadow-md"
               />

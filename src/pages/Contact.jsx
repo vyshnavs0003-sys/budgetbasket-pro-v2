@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Contact.css";
+import GroceryImg from "../assets/images/contact-hero-01.jpg"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -64,7 +65,7 @@ const Contact = () => {
       {/* HERO */}
       <section className="contact-hero">
         <img
-          src="src\assets\images\contact-hero-01.jpg"
+          src={GroceryImg}
           alt="Fresh Groceries"
           className="contact-hero-img"
         />
