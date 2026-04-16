@@ -2,8 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const STORAGE_KEY = 'dailyOffers';
 const EXPIRY_KEY = 'offersExpiry';
-const DISCOUNT_PERCENT = 20; 
-const EXPIRY_HOURS = 24;     
+const DISCOUNT_PERCENT = 20;
+const EXPIRY_HOURS = 24;
+const OFFER_COUNT = 6; // Change to 6
 
 const getRandomProducts = (products, count) => {
   const shuffled = [...products];
@@ -14,12 +15,15 @@ const getRandomProducts = (products, count) => {
   return shuffled.slice(0, count);
 };
 
-// Load stored offers from localStorage if not expired
 const loadStoredOffers = () => {
   const stored = localStorage.getItem(STORAGE_KEY);
   const expiry = localStorage.getItem(EXPIRY_KEY);
   if (stored && expiry && Date.now() < parseInt(expiry)) {
-    return JSON.parse(stored);
+    const offers = JSON.parse(stored);
+    // If stored offers count doesn't match desired count, ignore them
+    if (offers.length === OFFER_COUNT) {
+      return offers;
+    }
   }
   return null;
 };
@@ -31,7 +35,7 @@ const saveOffers = (offers) => {
 };
 
 const initialState = {
-  offers: [],           
+  offers: [],
   discountPercent: DISCOUNT_PERCENT,
   loaded: false,
 };
@@ -40,7 +44,6 @@ const offersSlice = createSlice({
   name: 'offers',
   initialState,
   reducers: {
-    // Manually set offers 
     setOffers: (state, action) => {
       state.offers = action.payload;
       state.loaded = true;
@@ -56,7 +59,7 @@ const offersSlice = createSlice({
         return;
       }
 
-      const selectedProducts = getRandomProducts(allProducts, 3);
+      const selectedProducts = getRandomProducts(allProducts, OFFER_COUNT);
       const offerIds = selectedProducts.map(p => p.id);
       state.offers = offerIds;
       saveOffers(offerIds);
