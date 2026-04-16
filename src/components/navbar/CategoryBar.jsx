@@ -11,7 +11,9 @@ const CategoryBar = ({ onBudgetClick }) => {
     { name: 'Grocery & Staples' },
     { name: 'Snacks & Branded Food' },
     { name: 'Personal Care' },
+    { name: 'Baby Care'},
     { name: 'Home Care' },
+   
   ];
 
   const slugify = (text) =>

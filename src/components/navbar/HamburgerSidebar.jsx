@@ -15,6 +15,7 @@ const HamburgerSidebar = ({ isOpen, onClose, onBudgetClick }) => {
     'Grocery & Staples',
     'Snacks & Branded Food',
     'Personal Care',
+    'Baby Care',
     'Home Care',
   ];
 

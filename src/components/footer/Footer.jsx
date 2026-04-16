@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import {
   FaInstagram,
   FaFacebookF,
-  FaTwitter,
   FaMapMarkerAlt,
   FaEnvelope,
   FaPhone,
 } from "react-icons/fa";
+import { FaXTwitter} from "react-icons/fa6";
 import "./Footer.css";
 
 import googlePlayImg from "../../assets/images/googleplay.png";
@@ -20,6 +20,7 @@ const Footer = ({ onBudgetClick }) => {
     "Grocery & Staples",
     "Home Care",
     "Personal Care",
+    'Baby Care',
     "Snacks & Branded Food",
   ];
 
@@ -43,17 +44,17 @@ const Footer = ({ onBudgetClick }) => {
               Helping Kozhikode households stay within budget.
             </p>
 
-            <div className="social-icons mt-3">
-              <a href="#" aria-label="Instagram">
+           <div className="social-icons mt-3">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <FaInstagram />
               </a>
-              <a href="#" aria-label="Facebook">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <FaFacebookF />
               </a>
-              <a href="#" aria-label="Twitter">
-                <FaTwitter />
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                <FaXTwitter /> 
               </a>
-            </div>
+           </div>
           </div>
 
           {/* Quick Links */}
