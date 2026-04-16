@@ -47,7 +47,6 @@ const DailyOffer = () => {
           </div>
           
           <h2 className="daily-offer-title">
-            <FaFire className="title-icon" />
             Daily Specials
             <span className="title-extra"> Extra {discountPercent}% OFF</span>
           </h2>

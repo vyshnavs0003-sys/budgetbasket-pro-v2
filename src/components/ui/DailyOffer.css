@@ -1,11 +1,11 @@
-/* DailyOffer.css – Professional, no emojis */
+/* DailyOffer.css */
 
 .daily-offer-section {
   position: relative;
-  padding: 80px 0;
+  padding: 40px 0;
   background: linear-gradient(135deg, #fff8f0 0%, #ffe6d5 100%);
   overflow: hidden;
-  margin: 40px 0;
+  margin: 30px 0;
 }
 
 .daily-offer-bg-overlay {
@@ -14,66 +14,55 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://www.transparenttextures.com/patterns/cartographer.png');
+  background-image: url('../../assets/images/cartographer.png'); 
   background-repeat: repeat;
-  opacity: 0.08;
+  opacity: 0.15;
   pointer-events: none;
 }
 
 .daily-offer-header {
   text-align: center;
-  margin-bottom: 48px;
-  position: relative;
+  margin-bottom: 28px;
 }
 
 .offer-badge-floating {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: #ff4d4d;
   color: white;
-  padding: 6px 18px;
+  padding: 4px 14px;
   border-radius: 40px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
-  animation: pulse 1.5s infinite;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(255, 77, 77, 0.2);
+  
 }
 
 .badge-icon {
-  font-size: 14px;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.9; }
-  100% { transform: scale(1); opacity: 1; }
+  font-size: 12px;
 }
 
 .daily-offer-title {
-  font-size: 2.8rem;
+  font-size: 2rem;
   font-weight: 800;
   background: linear-gradient(135deg, #2c3e2f, #1e5a2e);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  margin-bottom: 12px;
-  letter-spacing: -0.5px;
+  margin-bottom: 6px;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .title-icon {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   color: #ff8c42;
-  background: none;
-  -webkit-background-clip: unset;
-  background-clip: unset;
 }
 
 .title-extra {
@@ -81,182 +70,132 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-weight: 800;
 }
 
 .daily-offer-subtitle {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: #5a4a3a;
-  font-weight: 500;
-  border-bottom: 2px dashed #ffb347;
-  display: inline-block;
-  padding-bottom: 6px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .offer-timer {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(8px);
-  padding: 8px 20px;
-  border-radius: 50px;
-  margin-top: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  padding: 4px 16px;
+  border-radius: 40px;
+  margin-top: 8px;
 }
 
 .timer-icon {
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: white;
 }
 
 .timer-label {
   color: #fff;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  font-size: 0.8rem;
 }
 
 .timer-value {
   background: #ff5722;
   color: white;
-  padding: 4px 12px;
+  padding: 2px 10px;
   border-radius: 30px;
   font-family: monospace;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: bold;
-  letter-spacing: 1px;
 }
 
 .daily-offer-slider {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  gap: 28px;
-  padding: 20px 0 30px;
+  gap: 20px;
+  padding: 10px 0 20px;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
 }
 
 .daily-offer-item {
-  flex: 0 0 300px;
+  flex: 0 0 260px;
   scroll-snap-align: start;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.offer-card-glow {
-  position: absolute;
-  inset: -2px;
-  background: radial-gradient(circle at 30% 20%, rgba(255,107,0,0.3), transparent);
-  border-radius: 20px;
-  opacity: 0;
-  transition: opacity 0.4s;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.daily-offer-item:hover .offer-card-glow {
-  opacity: 1;
+  transition: transform 0.2s ease;
 }
 
 .daily-offer-item:hover {
-  transform: translateY(-8px);
+  transform: translateY(-4px);
+}
+
+.offer-card-glow {
+  display: none; 
 }
 
 .daily-offer-section .product-card {
-  background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(2px);
-  border-radius: 20px !important;
-  border: 1px solid rgba(255,255,255,0.3);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  transition: all 0.3s;
-  height: 100%;
+  background: white !important;
+  backdrop-filter: none;
+  border-radius: 16px !important;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: all 0.2s;
 }
 
 .daily-offer-section .product-card:hover {
-  box-shadow: 0 25px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .daily-offer-footer {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 24px;
 }
 
 .view-all-offers-btn {
   background: linear-gradient(90deg, #28a745, #1e7e34);
   border: none;
-  padding: 12px 32px;
-  border-radius: 50px;
+  padding: 8px 28px;
+  border-radius: 40px;
   color: white;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 5px 15px rgba(40,167,69,0.3);
+  transition: all 0.2s;
 }
 
 .view-all-offers-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(40,167,69,0.4);
-  background: linear-gradient(90deg, #1e7e34, #155d27);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(40,167,69,0.3);
 }
 
+/* Responsive: mobile grid instead of horizontal scroll */
 @media (max-width: 767px) {
   .daily-offer-section {
-    padding: 50px 0;
+    padding: 30px 0;
   }
-
   .daily-offer-slider {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
     overflow-x: visible;
-    padding: 0;
   }
-
   .daily-offer-item {
     flex: none;
     width: auto;
   }
-
   .daily-offer-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
-
   .title-icon {
-    font-size: 1.6rem;
-  }
-
-  .daily-offer-subtitle {
-    font-size: 0.9rem;
-  }
-
-  .offer-timer {
-    padding: 5px 12px;
-    gap: 6px;
-  }
-  
-  .timer-value {
-    font-size: 0.8rem;
-    padding: 2px 8px;
+    font-size: 1.3rem;
   }
 }
 
 @media (max-width: 480px) {
   .daily-offer-slider {
-    gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   .daily-offer-title {
-    font-size: 1.4rem;
-  }
-  .title-icon {
     font-size: 1.2rem;
-  }
-  .offer-timer {
-    padding: 4px 10px;
-  }
-  .timer-value {
-    font-size: 0.7rem;
   }
 }

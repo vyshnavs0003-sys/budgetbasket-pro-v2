@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import ProductCard from '../components/ui/ProductCard';
-import { FaGift, FaTruck, FaPercent, FaUsers, FaBolt, FaClock } from 'react-icons/fa';
+import { FaGift, FaTruck, FaPercent, FaUsers, FaClock, FaBaby } from 'react-icons/fa';
+import FlashSaleBanner from '../components/ui/FlashSaleBanner';
 import './Offers.css';
 
 const Offers = () => {
@@ -10,7 +11,7 @@ const Offers = () => {
 
   const offerProducts = products.filter((p) => offers.includes(p.id));
 
-  // Countdown to next midnight (offers reset)
+  // Countdown to midnight 
   const [timeLeft, setTimeLeft] = useState('');
   useEffect(() => {
     const calc = () => {
@@ -26,25 +27,6 @@ const Offers = () => {
     };
     calc();
     const timer = setInterval(calc, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // Flash sale timer (example: 3 hours)
-  const [flashTime, setFlashTime] = useState('');
-  useEffect(() => {
-    const end = new Date();
-    end.setHours(end.getHours() + 3);
-    const calcFlash = () => {
-      const now = new Date();
-      const diff = end - now;
-      if (diff <= 0) return setFlashTime('Ended');
-      const h = Math.floor(diff / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      setFlashTime(`${h}h ${m}m ${s}s`);
-    };
-    calcFlash();
-    const timer = setInterval(calcFlash, 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -81,14 +63,6 @@ const Offers = () => {
       bg: 'linear-gradient(135deg, #a55eea, #8854d0)',
       icon: <FaUsers />,
     },
-    {
-      id: 5,
-      title: 'Flash Sale',
-      description: 'Up to 60% off on selected items',
-      code: 'FLASH60',
-      bg: 'linear-gradient(135deg, #fd9644, #fa8231)',
-      icon: <FaBolt />,
-    },
   ];
 
   if (status === 'loading') return <div className="offers-loading">Loading offers...</div>;
@@ -97,24 +71,7 @@ const Offers = () => {
   return (
     <div className="offers-page">
       <div className="container">
-        {/* Hero Section */}
-        <div className="offers-hero">
-          <div className="offers-hero-content">
-            <span className="hero-badge">Limited Time</span>
-            <h1>Daily Specials & Exclusive Deals</h1>
-            <p>Extra {discountPercent}% off on selected products – refreshed every 24 hours</p>
-            <div className="hero-timer">
-              <FaClock className="timer-icon" />
-              <span>Next refresh in: </span>
-              <strong>{timeLeft}</strong>
-            </div>
-          </div>
-          <div className="offers-hero-illustration">
-            <div className="pulse-circle"></div>
-            <div className="pulse-circle delay"></div>
-          </div>
-        </div>
-
+          <FlashSaleBanner />
         {/* Creative Offer Cards */}
         <div className="offers-grid">
           {creativeOffers.map((offer) => (
@@ -127,18 +84,17 @@ const Offers = () => {
           ))}
         </div>
 
-        {/* Flash Sale Banner */}
-        <div className="flash-sale-banner">
-          <div className="flash-sale-left">
-            <FaBolt className="flash-icon" />
-            <div>
-              <h2>Flash Sale</h2>
-              <p>Up to 60% off + extra 10% on checkout</p>
+       {/* Hero Section – Daily Specials */}
+        <div className="offers-hero">
+          <div className="offers-hero-content">
+            <span className="hero-badge">Limited Time</span>
+            <h1>Daily Specials & Exclusive Deals</h1>
+            <p>Extra {discountPercent}% off on selected products – refreshed every 24 hours</p>
+            <div className="hero-timer">
+              <FaClock className="timer-icon" />
+              <span>Next refresh in: </span>
+              <strong>{timeLeft}</strong>
             </div>
-          </div>
-          <div className="flash-sale-timer">
-            <span>Ends in: </span>
-            <strong>{flashTime}</strong>
           </div>
         </div>
 
