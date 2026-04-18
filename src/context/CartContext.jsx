@@ -69,7 +69,7 @@ export const CartProvider = ({ children }) => {
     );
   }, [cartItems]);
 
-  const deliveryCharge = cartItems.length > 0 ? 25 : 0;
+  const deliveryCharge = cartItems.length > 0 && itemsTotal < 500 ? 25 : 0;
   const handlingCharge = cartItems.length > 0 ? 2 : 0;
   const smallCartCharge = itemsTotal > 0 && itemsTotal < 300 ? 20 : 0;
 
